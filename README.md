@@ -38,7 +38,9 @@ public java.util.stream.Stream<E> stream();
 The return type of this method is Stream interafce available in java.util.stream sub package.
 
 Eg:-
-		List<String> items = new ArrayList<String>();
+		
+  		List<String> items = new ArrayList<String>();
+  
 				items.add("Apple");
 				items.add("Orange");
 				items.add("Mango");
