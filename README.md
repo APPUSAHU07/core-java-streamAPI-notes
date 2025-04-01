@@ -47,47 +47,47 @@ Eg:-
 				//Collection to stream
 				Stream<String> stream = items.stream();
 ----------------------------------------------------------------
-package com.ravi.basic;
-import java.util.*;  //Base package
-import java.util.stream.*; //Sub package
-public class StreamDemo1 
-{
-	public static void main(String[] args) 
+	package com.ravi.basic;
+	import java.util.*;  //Base package
+	import java.util.stream.*; //Sub package
+	public class StreamDemo1 
 	{
-		List<String> items = new ArrayList<>();
-		items.add("Apple");
-		items.add("Orange");
-		items.add("Mango");
-
-        //Collections Object to Stream
-		Stream<String> strm = items.stream();
-		strm.forEach(p -> System.out.println(p));
+		public static void main(String[] args) 
+		{
+			List<String> items = new ArrayList<>();
+			items.add("Apple");
+			items.add("Orange");
+			items.add("Mango");
+	
+	        //Collections Object to Stream
+			Stream<String> strm = items.stream();
+			strm.forEach(p -> System.out.println(p));
+		}
 	}
-}
 -----------------------------------------------------------------
 public static java.util.stream.Stream  of(T ...values)
 -----------------------------------------------------
 It is a static method of Stream interface through which we can create Stream of arrays and Stream of Collection. The return type of this method is Stream interface.
 
-//Stream.of()
-package com.ravi.basic;
-import java.util.stream.*;
-public class StreamDemo2 
-{
-	public static void main(String[] args) 
+	//Stream.of()
+	package com.ravi.basic;
+	import java.util.stream.*;
+	public class StreamDemo2 
 	{
-		//Stream of numbers
-		Stream<Integer> stream = Stream.of(1,2,3,4,5,6,7,8,9);
-		stream.forEach(p -> System.out.println(p));
-
-		System.out.println("...............................");
-
-         //Anonymous Array Object (Stream of Arrays)
-		
-		Stream<Integer> strm = Stream.of( new Integer[]{15,29,45,8,16} );
-		strm.forEach(p -> System.out.println(p));
+		public static void main(String[] args) 
+		{
+			//Stream of numbers
+			Stream<Integer> stream = Stream.of(1,2,3,4,5,6,7,8,9);
+			stream.forEach(p -> System.out.println(p));
+	
+			System.out.println("...............................");
+	
+	         //Anonymous Array Object (Stream of Arrays)
+			
+			Stream<Integer> strm = Stream.of( new Integer[]{15,29,45,8,16} );
+			strm.forEach(p -> System.out.println(p));
+		}
 	}
-}
 ----------------------------------------------------------------
 30-01-2025
 -----------
@@ -136,11 +136,11 @@ Note : All these methods return type is Stream.
 The following progran explains that once a Stream is closed OR consumer by using terminal method then we can't re-use that 
 Stream, If we try to re-use then at runtime java.lang.IllegalStateException will be generated as shown in the program.
 
-package com.ravi.testing;
-
-import java.util.stream.Stream;
-
-public class StreamOperation {
+	package com.ravi.testing;
+	
+	import java.util.stream.Stream;
+	
+	public class StreamOperation {
 
 	public static void main(String[] args) 
 	{
@@ -154,7 +154,7 @@ public class StreamOperation {
 
 	}
 
-}
+	}
 ---------------------------------------------------------------
 public abstract Stream<T> filter(Predicate<T> p) : 
 ----------------------------------------------------
@@ -169,153 +169,153 @@ It is a terminal operation. It is used to collect the data after filteration and
 Collectors is a predfined final utility class available in java.util.stream sub package which conatins  static method toList(),toSet(), toMap() to convert the data as a List/Set/Map i.e Collection object. The return type of these method is List/Set/Map interface.
 
 --------------------------------------------------------------
-//Filter all the even numbers from Collection 
-package com.ravi.basic;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class StreamDemo3 
-{
-	public static void main(String[] args) 
+	//Filter all the even numbers from Collection 
+	package com.ravi.basic;
+	
+	import java.util.ArrayList;
+	import java.util.Arrays;
+	import java.util.List;
+	
+	public class StreamDemo3 
 	{
-	  List<Integer> listOfNumber = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
-	  
-	  //Without Stream API
-	  List<Integer> even = new ArrayList<Integer>();
-	  
-	  for(Integer num : listOfNumber)
-	  {
-		  if(num % 2==0)
+		public static void main(String[] args) 
+		{
+		  List<Integer> listOfNumber = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12);
+		  
+		  //Without Stream API
+		  List<Integer> even = new ArrayList<Integer>();
+		  
+		  for(Integer num : listOfNumber)
 		  {
-			  even.add(num);
+			  if(num % 2==0)
+			  {
+				  even.add(num);
+			  }
 		  }
-	  }
-	  
-	  even.forEach(System.out::println);
-	  
-	  System.out.println("........................");
-	  
-	  //With Stream API
-	  listOfNumber.stream().filter(num -> num%2==0).forEach(System.out::println);
-	    
+		  
+		  even.forEach(System.out::println);
+		  
+		  System.out.println("........................");
+		  
+		  //With Stream API
+		  listOfNumber.stream().filter(num -> num%2==0).forEach(System.out::println);
+		    
+		}
 	}
-}
 ---------------------------------------------------------------
-package com.ravi.basic;
-
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-public class FilterDemo {
-
-	public static void main(String[] args) 
-	{
-		List<String> listOfName = List.of("Aryan","Ankit","Raj","Rohit","Aniket","Raj","Aryan","Ajinkya","Ankit");
-		
-		//Retrieve all the names which starts from character A and it should not 
-		//contain duplicate
-		
-		Set<String> filteredName = listOfName.stream().filter(str -> str.startsWith("A")).collect(Collectors.toSet());
-		
-		System.out.println(filteredName);
+	package com.ravi.basic;
+	
+	import java.util.List;
+	import java.util.Set;
+	import java.util.stream.Collectors;
+	
+	public class FilterDemo {
+	
+		public static void main(String[] args) 
+		{
+			List<String> listOfName = List.of("Aryan","Ankit","Raj","Rohit","Aniket","Raj","Aryan","Ajinkya","Ankit");
+			
+			//Retrieve all the names which starts from character A and it should not 
+			//contain duplicate
+			
+			Set<String> filteredName = listOfName.stream().filter(str -> str.startsWith("A")).collect(Collectors.toSet());
+			
+			System.out.println(filteredName);
+		}
+	
 	}
-
-}
 --------------------------------------------------------------
 
-package com.ravi.basic;
-
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-public class FilterDemo1 {
-
-	public static void main(String[] args) 
-	{
-		 //Retrieve all the names which starts from R and duplicates are allowed
-        List<String> filteredName = Stream.of("Aryan","Ankit","Raj","Rohit","Aniket","Raj","Aryan").filter(str-> str.startsWith("R")).collect(Collectors.toList());
-		
-      System.out.println(filteredName);
-		
-		
-
-	}
-
-}
----------------------------------------------------------------
-//Filtering the name which starts with 'R' character with Stream API where duplicate are not allowed and in Alphabetical order
-package com.ravi.basic;
-
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-public class StreamDemo4 
-{
-	public static void main(String[] args) 
-	{
-		List<String> listOfName = Arrays.asList("Raj","Rahul","Ankit","Roshan","Raj","Scott","Rohit","Ratan","Ravi");
-		
-		listOfName.stream().filter(str -> str.startsWith("R")).distinct().sorted().forEach(System.out::println);
-		
-		
-	}
-}
-----------------------------------------------------------------
-//Sorting the data
-package com.ravi.basic;
-import java.util.*;
-import java.util.stream.*;
-public class StreamDemo5 
-{
-	public static void main(String[] args) 
-	{
-	List<String> names = Arrays.asList("Zaheer","Rahul","Aryan","Sailesh","Zaheer");
-
-		List<String> collect = names.stream().distinct().sorted().collect(Collectors.toList());
-		
-		System.out.println(collect);
-	}
-}
-----------------------------------------------------------------
-package com.ravi.basic;
-
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-//Fetch all the Employees name whose salary is greater than 50k 
-
-record Employee(Integer empId, String empName, Double empSalary)
-{
+	package com.ravi.basic;
 	
-}
-
-public class StreamDemo6
-{
-	public static void main(String[] args) 
-	{
-	   Employee e1 = new Employee(111, "Juber", 90000D); 
-	   Employee e2 = new Employee(222, "Aryan", 40000D); 
-	   Employee e3 = new Employee(333, "Scott", 60000D); 
-	   Employee e4 = new Employee(444, "Rahul", 70000D); 
-	   Employee e5 = new Employee(555, "Aakash",85000D); 
-	   Employee e6 = new Employee(666, "Manav", 92000D); 
-	  
-	   List<Employee> list = Stream.of(e1,e2,e3,e4,e5,e6).filter(emp -> emp.empSalary()>50000).collect(Collectors.toList());
-   	
-	   list.forEach(System.out::println);
-	   
+	import java.util.List;
+	import java.util.Set;
+	import java.util.stream.Collectors;
+	import java.util.stream.Stream;
+	
+	public class FilterDemo1 {
+	
+		public static void main(String[] args) 
+		{
+			 //Retrieve all the names which starts from R and duplicates are allowed
+	        List<String> filteredName = Stream.of("Aryan","Ankit","Raj","Rohit","Aniket","Raj","Aryan").filter(str-> str.startsWith("R")).collect(Collectors.toList());
+			
+	      System.out.println(filteredName);
+			
+			
+	
+		}
+	
 	}
-}
+---------------------------------------------------------------
+	//Filtering the name which starts with 'R' character with Stream API where duplicate are not allowed and in Alphabetical order
+	package com.ravi.basic;
+	
+	import java.util.Arrays;
+	import java.util.Comparator;
+	import java.util.List;
+	import java.util.stream.Collector;
+	import java.util.stream.Collectors;
+	import java.util.stream.Stream;
+	
+	public class StreamDemo4 
+	{
+		public static void main(String[] args) 
+		{
+			List<String> listOfName = Arrays.asList("Raj","Rahul","Ankit","Roshan","Raj","Scott","Rohit","Ratan","Ravi");
+			
+			listOfName.stream().filter(str -> str.startsWith("R")).distinct().sorted().forEach(System.out::println);
+			
+			
+		}
+	}
+----------------------------------------------------------------
+	//Sorting the data
+	package com.ravi.basic;
+	import java.util.*;
+	import java.util.stream.*;
+	public class StreamDemo5 
+	{
+		public static void main(String[] args) 
+		{
+		List<String> names = Arrays.asList("Zaheer","Rahul","Aryan","Sailesh","Zaheer");
+	
+			List<String> collect = names.stream().distinct().sorted().collect(Collectors.toList());
+			
+			System.out.println(collect);
+		}
+	}
+----------------------------------------------------------------
+	package com.ravi.basic;
+	
+	import java.util.List;
+	import java.util.stream.Collectors;
+	import java.util.stream.Stream;
+	
+	//Fetch all the Employees name whose salary is greater than 50k 
+	
+	record Employee(Integer empId, String empName, Double empSalary)
+	{
+		
+	}
+	
+	public class StreamDemo6
+	{
+		public static void main(String[] args) 
+		{
+		   Employee e1 = new Employee(111, "Juber", 90000D); 
+		   Employee e2 = new Employee(222, "Aryan", 40000D); 
+		   Employee e3 = new Employee(333, "Scott", 60000D); 
+		   Employee e4 = new Employee(444, "Rahul", 70000D); 
+		   Employee e5 = new Employee(555, "Aakash",85000D); 
+		   Employee e6 = new Employee(666, "Manav", 92000D); 
+		  
+		   List<Employee> list = Stream.of(e1,e2,e3,e4,e5,e6).filter(emp -> emp.empSalary()>50000).collect(Collectors.toList());
+	   	
+		   list.forEach(System.out::println);
+		   
+		}
+	}
 ----------------------------------------------------------------
 31-01-2025
 ----------
@@ -332,247 +332,247 @@ Here mapper function is functional interface which takes one input and provides 
 ---------------------------------------------------------------
  
 
-package com.ravi.basic;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
- 
-public class StreamDemo7 
-{
-    public static void main(String[] args) 
-    {
-       List<Integer> listOfNumbers = Arrays.asList(1,2,3,4,5,6,7,8,9,10);  
-       //add a constant value 10 to all the numbers
-       
-       List<Integer> numbers = listOfNumbers.stream().map(num -> num+10).collect(Collectors.toList());
-       
-       System.out.println(numbers);
-       
-       System.out.println(".................................");
-       
-      List<Integer> immutableList = List.of(1,2,3,4,5,6,7,8,9,10,2,3,4,6,8);
-      
-      //Fetch all the unique even numbers and find the cube of those numbers
-      System.out.println("Cube of all the even numbers :");
-       immutableList.stream().distinct().filter(num -> num%2==0).map(n -> n*n*n).forEach(System.out::println);
-      
-          
-    }
-}
-
---------------------------------------------------------------
-package com.ravi.basic;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-record MyEmp(Integer id, String name, Double salary)
-{
-	
-}
-
-public class MapDemo1 
-{
-	public static void main(String[] args)
+	package com.ravi.basic;
+	import java.util.Arrays;
+	import java.util.List;
+	import java.util.stream.Collectors;
+	import java.util.stream.Stream;
+	 
+	public class StreamDemo7 
 	{
-		ArrayList<MyEmp> listOfEmp = new ArrayList<>();
-		listOfEmp.add(new MyEmp(1, "Scott", 800D));
-		listOfEmp.add(new MyEmp(2, "Smith", 1200D));
-		listOfEmp.add(new MyEmp(3, "Alen", 1500D));
-		listOfEmp.add(new MyEmp(4, "Martin", 1800D));
-		listOfEmp.add(new MyEmp(5, "John", 2000D));
-
-		System.out.println("Original Employee Data with Old Salary");
-		listOfEmp.forEach(System.out::println);
-		
-		//add 500D in the salary for all the Employees
-		List<Double> collect = listOfEmp.stream().map(emp -> emp.salary()+500).collect(Collectors.toList());
-		
-		System.out.println("Employee Data after Salary updation");
-		collect.forEach(System.out::println);
-		
-		
+	    public static void main(String[] args) 
+	    {
+	       List<Integer> listOfNumbers = Arrays.asList(1,2,3,4,5,6,7,8,9,10);  
+	       //add a constant value 10 to all the numbers
+	       
+	       List<Integer> numbers = listOfNumbers.stream().map(num -> num+10).collect(Collectors.toList());
+	       
+	       System.out.println(numbers);
+	       
+	       System.out.println(".................................");
+	       
+	      List<Integer> immutableList = List.of(1,2,3,4,5,6,7,8,9,10,2,3,4,6,8);
+	      
+	      //Fetch all the unique even numbers and find the cube of those numbers
+	      System.out.println("Cube of all the even numbers :");
+	       immutableList.stream().distinct().filter(num -> num%2==0).map(n -> n*n*n).forEach(System.out::println);
+	      
+	          
+	    }
 	}
 
-}
 --------------------------------------------------------------
-//Program on map(Function<T,R> mapped)
-package com.ravi.basic;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
-public class StreamDemo8
-{ 
-	public static void main(String args[])
+	package com.ravi.basic;
+	
+	import java.util.ArrayList;
+	import java.util.List;
+	import java.util.stream.Collectors;
+	
+	record MyEmp(Integer id, String name, Double salary)
 	{
-		//Get the name of the Player in upper-case from Player Object
-		  
-		 List<Player> playerList = createPlayerList();
-		 
-		Set<String> playerName = playerList.stream().map(player -> player.name().toUpperCase()).collect(Collectors.toSet());
 		
-		System.out.println(playerName);
-		
-		
-		
+	}
+	
+	public class MapDemo1 
+	{
+		public static void main(String[] args)
+		{
+			ArrayList<MyEmp> listOfEmp = new ArrayList<>();
+			listOfEmp.add(new MyEmp(1, "Scott", 800D));
+			listOfEmp.add(new MyEmp(2, "Smith", 1200D));
+			listOfEmp.add(new MyEmp(3, "Alen", 1500D));
+			listOfEmp.add(new MyEmp(4, "Martin", 1800D));
+			listOfEmp.add(new MyEmp(5, "John", 2000D));
+	
+			System.out.println("Original Employee Data with Old Salary");
+			listOfEmp.forEach(System.out::println);
 			
-	}	
-	
-	public static List<Player> createPlayerList()
-	{
-		List<Player> al = new ArrayList<>();
-		al.add(new Player(18, "Virat"));
-		al.add(new Player(45, "Rohit"));
-		al.add(new Player(7, "Dhoni"));
-		al.add(new Player(18, "Virat"));
-		al.add(new Player(90, "Bumrah"));
-		al.add(new Player(67, "Hardik"));
-		
-		return al;
-	}
-}
-
- 
-record Player(Integer id, String name) 
-{
-	
-}
-
---------------------------------------------------------------
-package com.ravi.basic;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-public class MapDemo2 
-{
-	public static void main(String args[])
-	{
-		//Get the name of the Player in upper-case from Player Object
-		Set<Player> playerList = createPlayerList();
-		
-		List<String> collect = playerList.stream().map(player -> player.name().toUpperCase()).collect(Collectors.toList());
-		System.out.println(collect);
+			//add 500D in the salary for all the Employees
+			List<Double> collect = listOfEmp.stream().map(emp -> emp.salary()+500).collect(Collectors.toList());
 			
-	}	
+			System.out.println("Employee Data after Salary updation");
+			collect.forEach(System.out::println);
+			
+			
+		}
 	
-	public static Set<Player> createPlayerList()
-	{
-		Set<Player> player = new HashSet<>();
-		player.add(new Player(18, "Virat"));
-		player.add(new Player(45, "Rohit"));
-		player.add(new Player(7, "Dhoni"));
-		player.add(new Player(18, "Virat"));
-		player.add(new Player(90, "Bumrah"));
-		player.add(new Player(67, "Hardik"));
-		
-		return player;	
 	}
-}
- 
-record Player1(Integer id, String name) 
-{
-	
-}
 --------------------------------------------------------------
-//Find the length of the name
-
-package com.ravi.stream_demo;
-
-import java.util.Arrays;
-import java.util.List;
-
-public class FindLegthOfName {
-
-	public static void main(String[] args) 
-	{
-		List<String> listOfName = Arrays.asList("Rahul","Scott","Raj","Elina","Aaarti","Puja");
-		
-		listOfName.stream().map(str -> str.length()).forEach(System.out::println);
-
-	}
-
-}
--------------------------------------------------------------
-//Retrieve first character of all the given name
-
-package com.ravi.stream_demo;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class RetrieveFirstCharacter {
-
-	public static void main(String[] args) 
-	{
-	  List<String> listOfName = Arrays.asList("Jaya","Arnav","Virat","Aryan");
-	  
-	  List<Character> collect = listOfName.stream().map(str -> str.charAt(0)).collect(Collectors.toList());
-	  System.out.println(collect);
-
-	}
-
-}
--------------------------------------------------------------
-//Retrieve the employee salary from employee object
-
-package com.ravi.stream_demo;
-
-import java.util.ArrayList;
-
-record Employee(Integer empId, String empName, Double empSalary, Integer age)
-{
+	//Program on map(Function<T,R> mapped)
+	package com.ravi.basic;
 	
-}
-
-public class RetrieveSalary {
-
-	public static void main(String[] args) 
-	{
-		ArrayList<Employee> listOfEmployees = new ArrayList<>();
-		listOfEmployees.add(new Employee(111, "A", 70000D,24));
-		listOfEmployees.add(new Employee(222, "B", 60000D,26));
-		listOfEmployees.add(new Employee(333, "C", 45000D,23));
-		listOfEmployees.add(new Employee(444, "D", 65000D,28));
-		listOfEmployees.add(new Employee(555, "E", 55000D,29));
-		
-		System.out.println("Salary of all the employees :");
-		listOfEmployees.stream().map(emp -> emp.empSalary()).forEach(System.out::println);
+	import java.util.ArrayList;
+	import java.util.List;
+	import java.util.Set;
+	import java.util.stream.Collector;
+	import java.util.stream.Collectors;
+	
+	public class StreamDemo8
+	{ 
+		public static void main(String args[])
+		{
+			//Get the name of the Player in upper-case from Player Object
+			  
+			 List<Player> playerList = createPlayerList();
+			 
+			Set<String> playerName = playerList.stream().map(player -> player.name().toUpperCase()).collect(Collectors.toSet());
+			
+			System.out.println(playerName);
+			
+			
+			
 				
+		}	
+		
+		public static List<Player> createPlayerList()
+		{
+			List<Player> al = new ArrayList<>();
+			al.add(new Player(18, "Virat"));
+			al.add(new Player(45, "Rohit"));
+			al.add(new Player(7, "Dhoni"));
+			al.add(new Player(18, "Virat"));
+			al.add(new Player(90, "Bumrah"));
+			al.add(new Player(67, "Hardik"));
+			
+			return al;
+		}
 	}
-
-}
--------------------------------------------------------------
-//Retrieve the name whose length is > 3 and convert those 
-//names in uppercase
-
-package com.ravi.stream_demo;
-
-import java.util.Arrays;
-import java.util.List;
-
-public class FilterNameAndUpperCase {
-
-	public static void main(String[] args) 
+	
+	 
+	record Player(Integer id, String name) 
 	{
-		List<String> listOfName = Arrays.asList("Rahul","Scott","Raj","Elina","Ram","Puja");
 		
-		listOfName.stream().filter(str -> str.length()>3).map(name -> name.toUpperCase()).forEach(System.out::println);
-		
-		
-
 	}
 
-}
+--------------------------------------------------------------
+	package com.ravi.basic;
+	
+	import java.util.HashSet;
+	import java.util.List;
+	import java.util.Set;
+	import java.util.stream.Collectors;
+	
+	public class MapDemo2 
+	{
+		public static void main(String args[])
+		{
+			//Get the name of the Player in upper-case from Player Object
+			Set<Player> playerList = createPlayerList();
+			
+			List<String> collect = playerList.stream().map(player -> player.name().toUpperCase()).collect(Collectors.toList());
+			System.out.println(collect);
+				
+		}	
+		
+		public static Set<Player> createPlayerList()
+		{
+			Set<Player> player = new HashSet<>();
+			player.add(new Player(18, "Virat"));
+			player.add(new Player(45, "Rohit"));
+			player.add(new Player(7, "Dhoni"));
+			player.add(new Player(18, "Virat"));
+			player.add(new Player(90, "Bumrah"));
+			player.add(new Player(67, "Hardik"));
+			
+			return player;	
+		}
+	}
+	 
+	record Player1(Integer id, String name) 
+	{
+		
+	}
+--------------------------------------------------------------
+	//Find the length of the name
+	
+	package com.ravi.stream_demo;
+	
+	import java.util.Arrays;
+	import java.util.List;
+	
+	public class FindLegthOfName {
+	
+		public static void main(String[] args) 
+		{
+			List<String> listOfName = Arrays.asList("Rahul","Scott","Raj","Elina","Aaarti","Puja");
+			
+			listOfName.stream().map(str -> str.length()).forEach(System.out::println);
+	
+		}
+	
+	}
+-------------------------------------------------------------
+	//Retrieve first character of all the given name
+	
+	package com.ravi.stream_demo;
+	
+	import java.util.Arrays;
+	import java.util.List;
+	import java.util.stream.Collectors;
+	
+	public class RetrieveFirstCharacter {
+	
+		public static void main(String[] args) 
+		{
+		  List<String> listOfName = Arrays.asList("Jaya","Arnav","Virat","Aryan");
+		  
+		  List<Character> collect = listOfName.stream().map(str -> str.charAt(0)).collect(Collectors.toList());
+		  System.out.println(collect);
+	
+		}
+	
+	}
+-------------------------------------------------------------
+	//Retrieve the employee salary from employee object
+	
+	package com.ravi.stream_demo;
+	
+	import java.util.ArrayList;
+	
+	record Employee(Integer empId, String empName, Double empSalary, Integer age)
+	{
+		
+	}
+	
+	public class RetrieveSalary {
+	
+		public static void main(String[] args) 
+		{
+			ArrayList<Employee> listOfEmployees = new ArrayList<>();
+			listOfEmployees.add(new Employee(111, "A", 70000D,24));
+			listOfEmployees.add(new Employee(222, "B", 60000D,26));
+			listOfEmployees.add(new Employee(333, "C", 45000D,23));
+			listOfEmployees.add(new Employee(444, "D", 65000D,28));
+			listOfEmployees.add(new Employee(555, "E", 55000D,29));
+			
+			System.out.println("Salary of all the employees :");
+			listOfEmployees.stream().map(emp -> emp.empSalary()).forEach(System.out::println);
+					
+		}
+	
+	}
+-------------------------------------------------------------
+	//Retrieve the name whose length is > 3 and convert those 
+	//names in uppercase
+	
+	package com.ravi.stream_demo;
+	
+	import java.util.Arrays;
+	import java.util.List;
+	
+	public class FilterNameAndUpperCase {
+	
+		public static void main(String[] args) 
+		{
+			List<String> listOfName = Arrays.asList("Rahul","Scott","Raj","Elina","Ram","Puja");
+			
+			listOfName.stream().filter(str -> str.length()>3).map(name -> name.toUpperCase()).forEach(System.out::println);
+			
+			
+	
+		}
+	
+	}
 ----------------------------------------------------------------
 public Stream flatMap(Function<? super T,? extends Stream<? extends R>> mapper)
 
@@ -580,17 +580,18 @@ It is a predefined method of Stream interface.
 
 The map() method produces one output value for each input value in the stream So if there are n elements in the stream, map() operation will produce a stream of n output elements.
 
-flatMap() is two step process i.e. map() + Flattening. It helps in converting Collection<Collection<T>> into Collection<T> [to make flat i.e converting Collections of collection into single collection or merging of all the collection into single Collection]
+flatMap() is two step process i.e. map() + Flattening. It helps in converting Collection<Collection<T>> into Collection<T> 
+[to make flat i.e converting Collections of collection into single collection or merging of all the collection into single Collection]
 ---------------------------------------------------------------
 
-package com.ravi.testing;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-public class FlatMapDemo {
+	package com.ravi.testing;
+	
+	import java.util.Arrays;
+	import java.util.List;
+	import java.util.Set;
+	import java.util.stream.Collectors;
+	
+	public class FlatMapDemo {
 
 	public static void main(String[] args) 
 	{
@@ -611,132 +612,132 @@ public class FlatMapDemo {
 
 	}
 
-}
+	}
 --------------------------------------------------------------
 //flatMap()
 //map + Flattening [Converting Collections of collection into single collection]
-package com.ravi.basic;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
-public class StreamDemo9  
-{
-	public static void main(String[] args) 
+	package com.ravi.basic;
+	
+	import java.util.Arrays;
+	import java.util.List;
+	import java.util.stream.Collector;
+	import java.util.stream.Collectors;
+	
+	public class StreamDemo9  
 	{
-		List<String> list1 = Arrays.asList("A","B","C");
-		List<String> list2 = Arrays.asList("D","E","F");
-		List<String> list3 = Arrays.asList("G","H","I");
-		
-		List<List<String>> nestedColl = Arrays.asList(list1, list2, list3);
-		System.out.println("Original Nested Collection :"+nestedColl);
-		
-		List<String> collect = nestedColl.stream().flatMap(list -> list.stream()).collect(Collectors.toList());   
-		System.out.println(collect);
-		
+		public static void main(String[] args) 
+		{
+			List<String> list1 = Arrays.asList("A","B","C");
+			List<String> list2 = Arrays.asList("D","E","F");
+			List<String> list3 = Arrays.asList("G","H","I");
+			
+			List<List<String>> nestedColl = Arrays.asList(list1, list2, list3);
+			System.out.println("Original Nested Collection :"+nestedColl);
+			
+			List<String> collect = nestedColl.stream().flatMap(list -> list.stream()).collect(Collectors.toList());   
+			System.out.println(collect);
+			
+		}
 	}
-}
 ---------------------------------------------------------------
-//Flattening of prime, even and odd number
-package com.ravi.basic.flat_map;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-public class FlatMapDemo1 
-{
-	public static void main(String[] args)
+	//Flattening of prime, even and odd number
+	package com.ravi.basic.flat_map;
+	
+	import java.util.Arrays;
+	import java.util.List;
+	import java.util.stream.Collectors;
+	import java.util.stream.Stream;
+	
+	public class FlatMapDemo1 
 	{
-      List<Integer> primeNumbers = Arrays.asList(5,7,11);
-      List<Integer> evenNumbers = Arrays.asList(2,4,6);
-      List<Integer> oddNumbers = Arrays.asList(1,3,5);
-      
-      List<List<Integer>> nestedColl = List.of(primeNumbers,evenNumbers,oddNumbers);
-      System.out.println(nestedColl); 
-      
-     List<Integer> flatList = nestedColl.stream().flatMap(num -> num.stream()).collect(Collectors.toList());
-     
-     System.out.println(flatList);
-      
+		public static void main(String[] args)
+		{
+	      List<Integer> primeNumbers = Arrays.asList(5,7,11);
+	      List<Integer> evenNumbers = Arrays.asList(2,4,6);
+	      List<Integer> oddNumbers = Arrays.asList(1,3,5);
+	      
+	      List<List<Integer>> nestedColl = List.of(primeNumbers,evenNumbers,oddNumbers);
+	      System.out.println(nestedColl); 
+	      
+	     List<Integer> flatList = nestedColl.stream().flatMap(num -> num.stream()).collect(Collectors.toList());
+	     
+	     System.out.println(flatList);
+	      
+		
+		}
 	
 	}
-
-}
 ----------------------------------------------------------------
-//Fetching first character using flatMap()
-package com.ravi.basic.flat_map;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-public class FlatMapDemo2 
-{
-	public static void main(String[] args)
+	//Fetching first character using flatMap()
+	package com.ravi.basic.flat_map;
+	
+	import java.util.Arrays;
+	import java.util.List;
+	import java.util.stream.Collectors;
+	import java.util.stream.Stream;
+	
+	public class FlatMapDemo2 
 	{
-	    List<String> listOfNames = Arrays.asList("Jaya","Aryan","Virat","Aakash");
-	    
-		List<Character> list = listOfNames.stream().flatMap(str -> Stream.of(str.charAt(0))).toList(); //toList() java16V
-		System.out.println(list);
+		public static void main(String[] args)
+		{
+		    List<String> listOfNames = Arrays.asList("Jaya","Aryan","Virat","Aakash");
+		    
+			List<Character> list = listOfNames.stream().flatMap(str -> Stream.of(str.charAt(0))).toList(); //toList() java16V
+			System.out.println(list);
+		}
+	
 	}
-
-}
 --------------------------------------------------------------------
-package com.ravi.basic.flat_map;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.UnaryOperator;
-import java.util.stream.Collectors;
-
-class Product 
-{
-	private Integer productId;
-	private List<String> listOfProducts;
-
-	public Product(Integer productId, List<String> listOfProducts)       
+	package com.ravi.basic.flat_map;
+	
+	import java.util.Arrays;
+	import java.util.List;
+	import java.util.function.UnaryOperator;
+	import java.util.stream.Collectors;
+	
+	class Product 
 	{
-		super();
-		this.productId = productId;
-		this.listOfProducts = listOfProducts;
-
+		private Integer productId;
+		private List<String> listOfProducts;
+	
+		public Product(Integer productId, List<String> listOfProducts)       
+		{
+			super();
+			this.productId = productId;
+			this.listOfProducts = listOfProducts;
+	
+		}
+	
+		public Integer getProductId() 
+		{
+			return productId;
+		}
+	
+		public List<String> getListOfProducts() 
+		{
+			return listOfProducts;
+		}	
 	}
-
-	public Integer getProductId() 
+	
+	public class FlatMapDemo3 
 	{
-		return productId;
+		public static void main(String[] args) 
+		{
+			List<Product> listOfProduct = Arrays.asList(
+		new Product(1, Arrays.asList("Camera", "Mobile", "Laptop")),
+		new Product(2, Arrays.asList("Bat", "Ball", "Wicket")),
+		new Product(3, Arrays.asList("Chair", "Table", "Lamp")),
+		new Product(4, Arrays.asList("Cycle", "Bike", "Car"))
+	
+			);
+			
+			List<String> collect = listOfProduct.stream().flatMap(product -> product.getListOfProducts().stream()).collect(Collectors.toList());
+	
+			System.out.println(collect);
+			
+		}
+	
 	}
-
-	public List<String> getListOfProducts() 
-	{
-		return listOfProducts;
-	}	
-}
-
-public class FlatMapDemo3 
-{
-	public static void main(String[] args) 
-	{
-		List<Product> listOfProduct = Arrays.asList(
-	new Product(1, Arrays.asList("Camera", "Mobile", "Laptop")),
-	new Product(2, Arrays.asList("Bat", "Ball", "Wicket")),
-	new Product(3, Arrays.asList("Chair", "Table", "Lamp")),
-	new Product(4, Arrays.asList("Cycle", "Bike", "Car"))
-
-		);
-		
-		List<String> collect = listOfProduct.stream().flatMap(product -> product.getListOfProducts().stream()).collect(Collectors.toList());
-
-		System.out.println(collect);
-		
-	}
-
-}
 -------------------------------------------------------------------
 01-02-2025
 -----------
@@ -766,47 +767,47 @@ public static DoubleStream stream(double [] array);
 
 Note : By using above methods we can convert the array into corresponding Stream Type.
 
-package com.ravi.testing;
-
-import java.util.Arrays;
-import java.util.stream.DoubleStream;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
-
-public class PrimitiveToStreamDemo1 
-{
-	public static void main(String[] args)
+	package com.ravi.testing;
+	
+	import java.util.Arrays;
+	import java.util.stream.DoubleStream;
+	import java.util.stream.IntStream;
+	import java.util.stream.LongStream;
+	
+	public class PrimitiveToStreamDemo1 
 	{
-		IntStream intStream = IntStream.of(1,2,3,4,5,6,7,8);
-		LongStream longStream = LongStream.of(1L,2L,3L,4L,5L);
-		DoubleStream doubleStream = DoubleStream.of(1.1,1.2,1.3,1.4,1.5);
-		intStream.forEach(System.out::println);
-		System.out.println();
-		longStream.forEach(System.out::println);
-		System.out.println();
-		doubleStream.forEach(System.out::println);
-		
-		System.out.println();
-		System.out.println("..........................");
-		
-		
-		int a[] = {1,2,3,4,5};
-		IntStream intStream2 = Arrays.stream(a);
-		
-		long l[] = {1L, 2L, 3L, 4L};
-		LongStream longStream2 = Arrays.stream(l);
-		
-		double d[] = {1.2, 2.6, 3.9, 8.9};
-		DoubleStream doubleStream2 = Arrays.stream(d);
-		
-		intStream2.forEach(System.out::print );
-		System.out.println();
-		longStream2.forEach(System.out::print);
-		System.out.println();
-		doubleStream2.forEach(System.out::print);
-		
+		public static void main(String[] args)
+		{
+			IntStream intStream = IntStream.of(1,2,3,4,5,6,7,8);
+			LongStream longStream = LongStream.of(1L,2L,3L,4L,5L);
+			DoubleStream doubleStream = DoubleStream.of(1.1,1.2,1.3,1.4,1.5);
+			intStream.forEach(System.out::println);
+			System.out.println();
+			longStream.forEach(System.out::println);
+			System.out.println();
+			doubleStream.forEach(System.out::println);
+			
+			System.out.println();
+			System.out.println("..........................");
+			
+			
+			int a[] = {1,2,3,4,5};
+			IntStream intStream2 = Arrays.stream(a);
+			
+			long l[] = {1L, 2L, 3L, 4L};
+			LongStream longStream2 = Arrays.stream(l);
+			
+			double d[] = {1.2, 2.6, 3.9, 8.9};
+			DoubleStream doubleStream2 = Arrays.stream(d);
+			
+			intStream2.forEach(System.out::print );
+			System.out.println();
+			longStream2.forEach(System.out::print);
+			System.out.println();
+			doubleStream2.forEach(System.out::print);
+			
+		}
 	}
-}
 ----------------------------------------------------------------
 --------------------------------------------------------------
 IntStream flatMapToInt(Function<? super T, ? extends IntStream> mapper)
@@ -817,14 +818,14 @@ It allows us to transform each element of the stream into an IntStream (a stream
 
 Note : IntStream is a specialized stream for working with int values avilable in java.util.stream sub package.
 
-package com.ravi.basic.flat_map;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-public class FlatMapToIntDemo1 {
+	package com.ravi.basic.flat_map;
+	
+	import java.util.Arrays;
+	import java.util.List;
+	import java.util.stream.Collectors;
+	import java.util.stream.IntStream;
+	
+	public class FlatMapToIntDemo1 {
 
 	public static void main(String[] args) 
 	{
@@ -843,7 +844,7 @@ public class FlatMapToIntDemo1 {
 		
 	}
 
-}
+	}
 --------------------------------------------------------------
 
 LongStream flatMapToLong(Function<? super T, ? extends LongStream> mapper) :
@@ -854,13 +855,13 @@ It allows us to transform each element of the stream into a LongStream (a stream
 
 Note : LongStream is a specialized stream for working with long values avilable in java.util.stream sub package.
 
-package com.ravi.basic.flat_map;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.LongStream;
-
-public class FlatMapToLongDemo1 {
+	package com.ravi.basic.flat_map;
+	
+	import java.util.Arrays;
+	import java.util.List;
+	import java.util.stream.LongStream;
+	
+	public class FlatMapToLongDemo1 {
 
 	public static void main(String[] args) 
 	{
@@ -875,7 +876,7 @@ public class FlatMapToLongDemo1 {
 		flatMapToLong.forEach(System.out::println);
 	}
 
-}
+	}
 -------------------------------------------------------------
 DoubleStream flatMapToDouble(Function<? super T, ? extends DoubleStream> mapper)
 
@@ -885,29 +886,29 @@ It allows us to transform each element of the stream into an DoubleStream (a str
 
 Note : DoubleStream is a specialized stream for working with double values avilable in java.util.stream sub package.
 
-package com.ravi.basic.flat_map;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.DoubleStream;
-
-public class FlatMapToDoubleDemo1
-{
-    public static void main(String[] args)
-    {
-    	double d1[] = new double[]{1.1, 1.2, 1.3};
-    	double d2[] = new double[]{2.1, 2.2, 2.3};
-    	double d3[] = new double[]{3.1, 3.2, 3.3};
-        
-    	List<double[]> listOfDoubleArrays = Arrays.asList(d1,d2,d3);
-          
-            DoubleStream doubleStream = listOfDoubleArrays.stream()
-                .flatMapToDouble(array -> DoubleStream.of(array));
-
-            // Print each double value in the flattened stream
-            doubleStream.forEach(System.out::println);
-        }
-}
+	package com.ravi.basic.flat_map;
+	
+	import java.util.Arrays;
+	import java.util.List;
+	import java.util.stream.DoubleStream;
+	
+	public class FlatMapToDoubleDemo1
+	{
+	    public static void main(String[] args)
+	    {
+	    	double d1[] = new double[]{1.1, 1.2, 1.3};
+	    	double d2[] = new double[]{2.1, 2.2, 2.3};
+	    	double d3[] = new double[]{3.1, 3.2, 3.3};
+	        
+	    	List<double[]> listOfDoubleArrays = Arrays.asList(d1,d2,d3);
+	          
+	            DoubleStream doubleStream = listOfDoubleArrays.stream()
+	                .flatMapToDouble(array -> DoubleStream.of(array));
+	
+	            // Print each double value in the flattened stream
+	            doubleStream.forEach(System.out::println);
+	        }
+	}
 ---------------------------------------------------------------
 **Difference between map() and flatMap()
 --------------------------------------
@@ -933,63 +934,63 @@ It is a predefined method of Stream interface.
 
 If we want to return stream from another stream by removing all the duplicates then we should use distinct() method.
 
-package com.ravi.basic;
-
-import java.util.List;
-import java.util.stream.Stream;
-
-public class StreamDemo10
-{
-	public static void main(String[] args)
+	package com.ravi.basic;
+	
+	import java.util.List;
+	import java.util.stream.Stream;
+	
+	public class StreamDemo10
 	{
-		 //Print the numbers in ascending order
-		 List<Integer> listOfNum = List.of(89,67,56,45,23,15); 
-		 listOfNum.stream().
-		    sorted((i1,i2)-> i1.
-				 compareTo(i2)).
-		              forEach(System.out::println);
-		 System.out.println("===============================");
-		 
-		 //Print the numbers in descending order
-		 List<Integer> listOfNumber = List.of(89,67,56,45,23,15); 
-		 listOfNumber.stream().
-		    sorted((i1,i2)-> i2.compareTo(i1)).
-		       forEach(System.out::println);
-		 System.out.println("===============================");
-		 
-		 //Print the names in Ascending order
-		 Stream<String> strOfName = Stream.of("Ankit","Scott","Smith","James");
-		 strOfName.sorted((s1,s2)-> s1.compareTo(s2)).forEach(System.out::println);
-		 
-		 System.out.println("===============================");
-		 
-		 //Print the names in Descending order
-		 Stream<String> strmOfName = Stream.of("Ankit","Scott","Smith","James");
-		 strmOfName.sorted((s1,s2)-> s2.compareTo(s1)).forEach(System.out::println);
-		 
-		 System.out.println("......................");
-		 Stream<String> s = Stream.of("Virat", "Rohit", "Dhoni", "Virat", "Rohit","Aswin","Bumrah");
-			s.distinct().
-			sorted((s1,s2)-> s2.compareTo(s1)).
-			forEach(System.out::println);
-		
+		public static void main(String[] args)
+		{
+			 //Print the numbers in ascending order
+			 List<Integer> listOfNum = List.of(89,67,56,45,23,15); 
+			 listOfNum.stream().
+			    sorted((i1,i2)-> i1.
+					 compareTo(i2)).
+			              forEach(System.out::println);
+			 System.out.println("===============================");
+			 
+			 //Print the numbers in descending order
+			 List<Integer> listOfNumber = List.of(89,67,56,45,23,15); 
+			 listOfNumber.stream().
+			    sorted((i1,i2)-> i2.compareTo(i1)).
+			       forEach(System.out::println);
+			 System.out.println("===============================");
+			 
+			 //Print the names in Ascending order
+			 Stream<String> strOfName = Stream.of("Ankit","Scott","Smith","James");
+			 strOfName.sorted((s1,s2)-> s1.compareTo(s2)).forEach(System.out::println);
+			 
+			 System.out.println("===============================");
+			 
+			 //Print the names in Descending order
+			 Stream<String> strmOfName = Stream.of("Ankit","Scott","Smith","James");
+			 strmOfName.sorted((s1,s2)-> s2.compareTo(s1)).forEach(System.out::println);
+			 
+			 System.out.println("......................");
+			 Stream<String> s = Stream.of("Virat", "Rohit", "Dhoni", "Virat", "Rohit","Aswin","Bumrah");
+				s.distinct().
+				sorted((s1,s2)-> s2.compareTo(s1)).
+				forEach(System.out::println);
+			
+		}
+	
 	}
-
-}
 -------------------------------------------------------------
-package com.ravi.basic;
-import java.util.stream.Stream; 
-public class StreamDemo11 
-{
-	public static void main(String[] args) 
+	package com.ravi.basic;
+	import java.util.stream.Stream; 
+	public class StreamDemo11 
 	{
-		Stream<Integer> numbers = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 3, 4, 5);
-
-		numbers.distinct().forEach(System.out::println);
-
-		
+		public static void main(String[] args) 
+		{
+			Stream<Integer> numbers = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 3, 4, 5);
+	
+			numbers.distinct().forEach(System.out::println);
+	
+			
+		}
 	}
-}
 ---------------------------------------------------------------
 public Stream<T> limit(long maxSize) :
 ----------------------------------------
@@ -1008,60 +1009,60 @@ It is a predefined method of Stream interface which is used to skip the elements
 
 It returns a new stream that contains the remaining elements after skipping the specified number of elements which is passed as a parameter.
 
-package com.ravi.basic;
-import java.util.stream.Stream; 
-public class StreamDemo12 
-{
-	public static void main(String[] args) 
+	package com.ravi.basic;
+	import java.util.stream.Stream; 
+	public class StreamDemo12 
 	{
-		Stream<String> s = Stream.of("Virat", "Rohit", "Dhoni", "Zaheer", "Raina","Sahwag","Sachin","Bumrah");
-		s.limit(7).forEach(System.out::println);		
-		 
-		System.out.println("..............");
-		 
-		 Stream<String> of = Stream.of("Virat", "Rohit", "Rahul","Gill", "Pant","Bumrah","Nitish");
-		 of.skip(3).forEach(System.out::println);
-		 
+		public static void main(String[] args) 
+		{
+			Stream<String> s = Stream.of("Virat", "Rohit", "Dhoni", "Zaheer", "Raina","Sahwag","Sachin","Bumrah");
+			s.limit(7).forEach(System.out::println);		
+			 
+			System.out.println("..............");
+			 
+			 Stream<String> of = Stream.of("Virat", "Rohit", "Rahul","Gill", "Pant","Bumrah","Nitish");
+			 of.skip(3).forEach(System.out::println);
+			 
+		}
 	}
-}
 ---------------------------------------------------------------
 How many ways we can create Stream :
 -----------------------------------
 There are 4 ways to craete the Stream as shown in the Program
 
-package com.ravi.advanced;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.DoubleStream;
-import java.util.stream.Stream;
-
-public class WaysOfStreamCreation {
-
-	public static void main(String[] args) 
-	{
-		//Case 1:
-		List<Integer> list = List.of(1,2,3);
-		list.stream().forEach(System.out::println);
-		
-		//Case 2
-		double arr[] = {1.2, 3.6, 8.9};
-		DoubleStream stream = Arrays.stream(arr);
-	    stream.forEach(System.out::println);
-	    
-	    //Case 3
-	    Stream.of(12,90,78).forEach(System.out::println);
-	    
-	    
-		//Case 4 [How to generate Infinite Stream]
-	    //generate(Supplier<T> g)
-		Stream.generate(() -> Math.random()).limit(10).forEach(System.out::println); 
-	     
-		Stream.iterate(1, num -> num+1).limit(10).forEach(System.out::println);
-
+	package com.ravi.advanced;
+	
+	import java.util.Arrays;
+	import java.util.List;
+	import java.util.stream.DoubleStream;
+	import java.util.stream.Stream;
+	
+	public class WaysOfStreamCreation {
+	
+		public static void main(String[] args) 
+		{
+			//Case 1:
+			List<Integer> list = List.of(1,2,3);
+			list.stream().forEach(System.out::println);
+			
+			//Case 2
+			double arr[] = {1.2, 3.6, 8.9};
+			DoubleStream stream = Arrays.stream(arr);
+		    stream.forEach(System.out::println);
+		    
+		    //Case 3
+		    Stream.of(12,90,78).forEach(System.out::println);
+		    
+		    
+			//Case 4 [How to generate Infinite Stream]
+		    //generate(Supplier<T> g)
+			Stream.generate(() -> Math.random()).limit(10).forEach(System.out::println); 
+		     
+			Stream.iterate(1, num -> num+1).limit(10).forEach(System.out::println);
+	
+		}
+	
 	}
-
-}
 --------------------------------------------------------------
 03-02-2025
 ----------
@@ -1073,17 +1074,17 @@ It is an intermediate operation that allows us to perform operation on each elem
 
 The peek() method takes a Consumer as an argument, and this function is applied to each element in the stream. The method returns a new stream with the same elements as the original stream.
 
-package com.ravi.basic;
-
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-public class StreamDemo13 
-{
-	public static void main(String[] args) 
+	package com.ravi.basic;
+	
+	import java.util.List;
+	import java.util.stream.Collectors;
+	import java.util.stream.Stream;
+	
+	public class StreamDemo13 
 	{
-		Stream<String> streamOfFruits = Stream.of("Apple","Mango","Grapes","Kiwi","pomogranate");
+		public static void main(String[] args) 
+		{
+			Stream<String> streamOfFruits = Stream.of("Apple","Mango","Grapes","Kiwi","pomogranate");
 
 		List<Integer> fruitLength = streamOfFruits
 		    .peek(str -> System.out.println("Peeking from Original: " + str.toUpperCase()))
@@ -1094,7 +1095,7 @@ public class StreamDemo13
 		
 	}
 
-}
+	}
 
 Note :- peek(Consumer<T> cons) will not modify the Original Source.
 --------------------------------------------------------------
@@ -1104,15 +1105,15 @@ It is a predefined method of Stream interface introduced from java 9v which is u
 
 *It is used to create a new stream that includes elements from the original stream only as long as they satisfy a given predicate.
 
-package com.ravi.basic;
-
-import java.util.stream.Stream;
-
-public class StreamDemo14 
-{
- public static void main(String[] args) 
- {
-	 Stream<Integer> numbers = Stream.of(10,11,9,13,2,1,100);
+	package com.ravi.basic;
+	
+	import java.util.stream.Stream;
+	
+	public class StreamDemo14 
+	{
+	 public static void main(String[] args) 
+	 {
+		 Stream<Integer> numbers = Stream.of(10,11,9,13,2,1,100);
 
      numbers.takeWhile(n -> n > 9).forEach(System.out::println);     
 
@@ -1146,18 +1147,18 @@ public class StreamDemo14
    
    
 	 
- }
-}
+	 }
+	}
 ---------------------------------------------------------------
 public Stream<T> dropWhile(Predicate<T> predicate) :
 ----------------------------------------------------
 It is a predefined method of Stream interface introduced from java 9 which is used to create a new stream by excluding elements from the original stream as long as they satisfy a given predicate.
 
-package com.ravi.basic;
-
-import java.util.stream.Stream;
-
-public class StreamDemo15 {
+	package com.ravi.basic;
+	
+	import java.util.stream.Stream;
+	
+	public class StreamDemo15 {
 
 	public static void main(String[] args) 
 	{
@@ -1174,7 +1175,7 @@ public class StreamDemo15 {
 		
 	}
 
-}
+	}
 ---------------------------------------------------------------
 Optional<T> class in Java :
 ------------------------
@@ -1220,11 +1221,11 @@ It will Convert optional to Stream.
 ---------------------------------------------
 It Used to consume/accept the value from optional container if the value is not null.
 
-package com.ravi.optional_demo;
-
-import java.util.Optional;
-
-public class OptionDemo1 {
+	package com.ravi.optional_demo;
+	
+	import java.util.Optional;
+	
+	public class OptionDemo1 {
 
 	public static void main(String[] args) 
 	{
@@ -1253,19 +1254,19 @@ public class OptionDemo1 {
 	    
 	}
 
-}
+	}
 --------------------------------------------------------------
 //Writing different style of setter and getter
 
-package com.ravi.optional_demo;
-
-import java.util.Optional;
-import java.util.stream.Stream;
-
-class Employee
-{
-	private Integer employeeId;
-	private String employeeName;
+	package com.ravi.optional_demo;
+	
+	import java.util.Optional;
+	import java.util.stream.Stream;
+	
+	class Employee
+	{
+		private Integer employeeId;
+		private String employeeName;
 	
 	public Employee() 
 	{
@@ -1288,9 +1289,9 @@ class Employee
 	{
 		return Optional.ofNullable(employeeName);
 	}
-}
-
-public class OptionalDemo2 {
+	}
+	
+	public class OptionalDemo2 {
 
 	public static void main(String[] args) 
 	{
@@ -1319,88 +1320,83 @@ public class OptionalDemo2 {
           
 	}
 
-}
+	}
 ---------------------------------------------------------------
 //Replcing null by uisng Optional.empty()
 
-package com.ravi.optional_demo;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-public class OptionalDemo3 {
-
-	public static void main(String[] args) 
-	{
-		List<Optional<String>> listOfcity = new ArrayList<>();
-		
-		listOfcity.add(Optional.of("Hyderabad"));
-		listOfcity.add(Optional.of("Chennai"));
-		listOfcity.add(Optional.of("Mumbai"));
-		listOfcity.add(Optional.of("Nagpur"));
-		listOfcity.add(Optional.empty());
-		
-		for(Optional<String> opt : listOfcity)
+	package com.ravi.optional_demo;
+	
+	import java.util.ArrayList;
+	import java.util.List;
+	import java.util.Optional;
+	
+	public class OptionalDemo3 {
+	
+		public static void main(String[] args) 
 		{
-			if(opt.isPresent())
-			{
-				System.out.println(opt.get());
-			}
-			else
-			{
-				System.out.println("No Value in the List");
-			}		
+			List<Optional<String>> listOfcity = new ArrayList<>();
 			
+			listOfcity.add(Optional.of("Hyderabad"));
+			listOfcity.add(Optional.of("Chennai"));
+			listOfcity.add(Optional.of("Mumbai"));
+			listOfcity.add(Optional.of("Nagpur"));
+			listOfcity.add(Optional.empty());
+			
+			for(Optional<String> opt : listOfcity)
+			{
+				if(opt.isPresent())
+				{
+					System.out.println(opt.get());
+				}
+				else
+				{
+					System.out.println("No Value in the List");
+				}		
+				
+			}
+	
 		}
-
+	
 	}
-
-}
 --------------------------------------------------------------
 04-02-2025
 ------------
-//Immutability of Optional class
-
-package com.ravi.optional_class_demo;
-
-import java.util.Optional;
-public class OptionalDemo4
-{
-    public static void main(String[] args) 
-    {  	
-    	
-        Optional<String> optl = Optional.of("India");
-        System.out.println(optl.hashCode()); 
-
-        Optional<String> newOptnl = modifyOptional(optl);
-        System.out.println(newOptnl.hashCode());
-
-        // Check if the original Optional is still the same
-        System.out.println("Address is :" + (optl == newOptnl));       
-      
-    }
-
-    public static Optional<String> modifyOptional(Optional<String> optional) 
-    {       
-        if (optional.isPresent())
-        {
-            return Optional.of("Modified: " + optional.get());
-        } 
-        else 
-        {
-            return Optional.empty();
-        }
-    }
-}
+	//Immutability of Optional class
+	
+	package com.ravi.optional_class_demo;
+	
+	import java.util.Optional;
+	public class OptionalDemo4
+	{
+	    public static void main(String[] args) 
+	    {  	
+	    	
+	        Optional<String> optl = Optional.of("India");
+	        System.out.println(optl.hashCode()); 
+	
+	        Optional<String> newOptnl = modifyOptional(optl);
+	        System.out.println(newOptnl.hashCode());
+	
+	        // Check if the original Optional is still the same
+	        System.out.println("Address is :" + (optl == newOptnl));       
+	      
+	    }
+	
+	    public static Optional<String> modifyOptional(Optional<String> optional) 
+	    {       
+	        if (optional.isPresent())
+	        {
+	            return Optional.of("Modified: " + optional.get());
+	        } 
+	        else 
+	        {
+	            return Optional.empty();
+	        }
+	    }
+	}
 
 Note : India object created is immutable object so when we create 
        "Modified india" by using of method of Optional class it is created in different memory location so immutable.
-------------------------------------------------------------------
-Method Reference :
--------------------
-
-
 ------------------------------------------------------------------
 Method Reference in java :
 --------------------------
@@ -1422,284 +1418,284 @@ While working with Lambda expression we need to write the Lambda Method Body but
 
 There are 4 types of method reference 
 
-1) Static Method Reference(ClassName::staticMethodName)
-2) Instance Method Reference(objectReference::instanceMethodName)
-3) Constructor Reference (ClassName::new)
-4) Arbitrary Referenec (ClassName::instanceMethodName)
+	1) Static Method Reference(ClassName::staticMethodName)
+	2) Instance Method Reference(objectReference::instanceMethodName)
+	3) Constructor Reference (ClassName::new)
+	4) Arbitrary Referenec (ClassName::instanceMethodName)
 -----------------------------------------------------------------
-package com.ravi.testing;
-
-@FunctionalInterface
-interface Worker
-{
-	void work();
-}
-
-public class MethodRefDemo1 
-{
-	public static void main(String[] args)
+	package com.ravi.testing;
+	
+	@FunctionalInterface
+	interface Worker
 	{
-	   //Lambda Expression
-		Worker w1 = () -> System.out.println("Worker is working");
-		w1.work();
-		
-		//Method Reference 
-		Worker w2 = new Employee()::work;
-		w2.work();
-
+		void work();
 	}
-
-}
-
-
-class Employee
-{
-	public void work()
+	
+	public class MethodRefDemo1 
 	{
-		System.out.println("Employee is Working");
+		public static void main(String[] args)
+		{
+		   //Lambda Expression
+			Worker w1 = () -> System.out.println("Worker is working");
+			w1.work();
+			
+			//Method Reference 
+			Worker w2 = new Employee()::work;
+			w2.work();
+	
+		}
+	
 	}
-}
+	
+	
+	class Employee
+	{
+		public void work()
+		{
+			System.out.println("Employee is Working");
+		}
+	}
 
 -----------------------------------------------------------------
-package com.ravi.testing;
-
-@FunctionalInterface
-interface Worker
-{
-	void work();
-}
-
-public class MethodRefDemo2 
-{
-	public static void main(String[] args)
+	package com.ravi.testing;
+	
+	@FunctionalInterface
+	interface Worker
 	{
-	  Worker w1 = Employee::salary;
-	  w1.work();
-
+		void work();
 	}
-
-}
-
-
-class Employee
-{
-	public static void salary()
+	
+	public class MethodRefDemo2 
 	{
-		System.out.println("Employee is Working for Salary");
+		public static void main(String[] args)
+		{
+		  Worker w1 = Employee::salary;
+		  w1.work();
+	
+		}
+	
 	}
-}
+	
+	
+	class Employee
+	{
+		public static void salary()
+		{
+			System.out.println("Employee is Working for Salary");
+		}
+	}
 -----------------------------------------------------------------
-package com.ravi.testing;
-
-@FunctionalInterface
-interface Worker
-{
-	void work(double salary);
-}
-
-public class MethodRefDemo3
-{
-	public static void main(String[] args)
+	package com.ravi.testing;
+	
+	@FunctionalInterface
+	interface Worker
 	{
-	   Worker w1 = new Employee()::salary;
-	   w1.work(55000);
-
+		void work(double salary);
 	}
-}
-
-class Employee
-{
-	public void salary(double salary)
+	
+	public class MethodRefDemo3
 	{
-		System.out.println("Employee Salary is :"+salary);
+		public static void main(String[] args)
+		{
+		   Worker w1 = new Employee()::salary;
+		   w1.work(55000);
+	
+		}
 	}
-}
+	
+	class Employee
+	{
+		public void salary(double salary)
+		{
+			System.out.println("Employee Salary is :"+salary);
+		}
+	}
 ------------------------------------------------------------------
 //Program on static Method Reference :
 ---------------------------------------
-package com.ravi.static_method_reference;
-
-import java.util.Vector;
-import java.util.function.Consumer;
-
-class EvenOrOdd   
-{
-	public static void isEven(int number) 
-    {
-        if (number % 2 == 0)
-        {
-            System.out.println(number + " is even");
-        } 
-        else 
-        {
-            System.out.println(number + " is odd");
-        }
-    }
-}
-public class StaticMethodReferenceDemo1 
-{
-	public static void main(String[] args) 
-    {
-       Vector<Integer> numbers = new Vector<>();          
-       numbers.add(5);
-       numbers.add(2);
-       numbers.add(9);
-       numbers.add(12);       
-       
-       //By using Lambda Expression
-	   numbers.forEach(num -> EvenOrOdd.isEven(num));
-	   
-	   System.out.println("...............");
-	   
-	   //By using Method Reference
-	   numbers.forEach(EvenOrOdd::isEven);
-	   
-    }
-}
+	package com.ravi.static_method_reference;
+	
+	import java.util.Vector;
+	import java.util.function.Consumer;
+	
+	class EvenOrOdd   
+	{
+		public static void isEven(int number) 
+	    {
+	        if (number % 2 == 0)
+	        {
+	            System.out.println(number + " is even");
+	        } 
+	        else 
+	        {
+	            System.out.println(number + " is odd");
+	        }
+	    }
+	}
+	public class StaticMethodReferenceDemo1 
+	{
+		public static void main(String[] args) 
+	    {
+	       Vector<Integer> numbers = new Vector<>();          
+	       numbers.add(5);
+	       numbers.add(2);
+	       numbers.add(9);
+	       numbers.add(12);       
+	       
+	       //By using Lambda Expression
+		   numbers.forEach(num -> EvenOrOdd.isEven(num));
+		   
+		   System.out.println("...............");
+		   
+		   //By using Method Reference
+		   numbers.forEach(EvenOrOdd::isEven);
+		   
+	    }
+	}
 ------------------------------------------------------------------
 //Program on instance Method reefernce :
 
-package com.ravi.instance_method_reference;
-
-@FunctionalInterface
-interface Trainer 
-{
-  void getTraining(String name, int experience);
-}
-
-class InstanceMethod 
-{
-   public void getTraining(String name, int experience)  
-   {
-	   System.out.println("Trainer name is :"+name+" having "+experience+" years of experience.");
-   }
-}
-
-public class InstanceMethodReferenceDemo 
-{
-    public static void main(String[] args) 
-    {
-    	//Using Lambda Expression
-    	Trainer t1 = (name,  exp)-> System.out.println("Trainer name is :"+name+" and total experience is :"+exp+ " years");
-    	t1.getTraining("Smith", 5);
-    	
-    	
-    	//By using Method reference 
-    	Trainer t2 = new InstanceMethod()::getTraining;
-    	t2.getTraining("Scott", 10);   	
-    	
-    }
-}
+	package com.ravi.instance_method_reference;
+	
+	@FunctionalInterface
+	interface Trainer 
+	{
+	  void getTraining(String name, int experience);
+	}
+	
+	class InstanceMethod 
+	{
+	   public void getTraining(String name, int experience)  
+	   {
+		   System.out.println("Trainer name is :"+name+" having "+experience+" years of experience.");
+	   }
+	}
+	
+	public class InstanceMethodReferenceDemo 
+	{
+	    public static void main(String[] args) 
+	    {
+	    	//Using Lambda Expression
+	    	Trainer t1 = (name,  exp)-> System.out.println("Trainer name is :"+name+" and total experience is :"+exp+ " years");
+	    	t1.getTraining("Smith", 5);
+	    	
+	    	
+	    	//By using Method reference 
+	    	Trainer t2 = new InstanceMethod()::getTraining;
+	    	t2.getTraining("Scott", 10);   	
+	    	
+	    }
+	}
 ------------------------------------------------------------------
 Constructor reference (ClassName::new)
 ---------------------------------------
-package com.ravi.constructor_reference;
-
-@FunctionalInterface  
-interface A 
-{
-    Test createObject();  
-}
-
-class Test 
-{
-    public Test()  
-    {
-        System.out.println("Test class Constructor invoked");
-    }
-}
-public class ConstructorReferenceDemo1
-{
-    public static void main(String[] args) 
-    {
-        
-    	//By using Lambda Expression
-    	A a1 = () -> new Test();
-    	a1.createObject();
-    	
-    	System.out.println(".........");
-    	//By using Method Reference 
-    	A a2 = Test::new;
-    	a2.createObject();  	
-    	
-    }
-}
+	package com.ravi.constructor_reference;
+	
+	@FunctionalInterface  
+	interface A 
+	{
+	    Test createObject();  
+	}
+	
+	class Test 
+	{
+	    public Test()  
+	    {
+	        System.out.println("Test class Constructor invoked");
+	    }
+	}
+	public class ConstructorReferenceDemo1
+	{
+	    public static void main(String[] args) 
+	    {
+	        
+	    	//By using Lambda Expression
+	    	A a1 = () -> new Test();
+	    	a1.createObject();
+	    	
+	    	System.out.println(".........");
+	    	//By using Method Reference 
+	    	A a2 = Test::new;
+	    	a2.createObject();  	
+	    	
+	    }
+	}
 ------------------------------------------------------------------
-package com.ravi.constructor_reference;
-
-import java.util.function.Function;
-
-class Accept
-{
-	private int x;
+	package com.ravi.constructor_reference;
 	
-	public Accept(int x)    
+	import java.util.function.Function;
+	
+	class Accept
 	{
-		this.x = x;
+		private int x;
+		
+		public Accept(int x)    
+		{
+			this.x = x;
+		}
+		
+		public int getX()
+		{
+			return this.x;
+		}	
 	}
 	
-	public int getX()
+	public class ConstructorReferenceDemo2 
 	{
-		return this.x;
-	}	
-}
-
-public class ConstructorReferenceDemo2 
-{
-	public static void main(String[] args) 
-	{
-      Function<Integer,Accept> fn1 = Accept::new;                  
-      Accept obj = fn1.apply(90);
-      
-      System.out.println("The value of x :"+obj.getX());
+		public static void main(String[] args) 
+		{
+	      Function<Integer,Accept> fn1 = Accept::new;                  
+	      Accept obj = fn1.apply(90);
+	      
+	      System.out.println("The value of x :"+obj.getX());
+		}
+	
 	}
-
-}
 ------------------------------------------------------------------
 //How to create Array Object using Constructor reference :
 -----------------------------------------------------------
-package com.ravi.constructor_reference;
-
-import java.util.Arrays;
-import java.util.function.Function;
-
-class Person 
-{
-    private String name;   //Person persons[] = new Person[5];
-
-    public Person(String name) 
-    {
-        this.name = name;
-    }
-
-    public String getName() 
-    {
-        return name;
-    }
-
-	@Override
-	public String toString() {
-		return "Person [name=" + name + "]";
+	package com.ravi.constructor_reference;
+	
+	import java.util.Arrays;
+	import java.util.function.Function;
+	
+	class Person 
+	{
+	    private String name;   //Person persons[] = new Person[5];
+	
+	    public Person(String name) 
+	    {
+	        this.name = name;
+	    }
+	
+	    public String getName() 
+	    {
+	        return name;
+	    }
+	
+		@Override
+		public String toString() {
+			return "Person [name=" + name + "]";
+		}
+	    
+	    
 	}
-    
-    
-}
-
-public class ConstructorReferenceDemo3
-{
-    public static void main(String[] args) 
-    {
-       Function<Integer,Person[]> fn2 =  Person[]::new;
-       
-       Person []persons = fn2.apply(3);  //3 is the size of the array
-       
-       persons[0] = new Person("Scott");
-       persons[1] = new Person("Smith");
-       persons[2] = new Person("Martin");
-    	
-       System.out.println(Arrays.toString(persons));
-    }
-}
+	
+	public class ConstructorReferenceDemo3
+	{
+	    public static void main(String[] args) 
+	    {
+	       Function<Integer,Person[]> fn2 =  Person[]::new;
+	       
+	       Person []persons = fn2.apply(3);  //3 is the size of the array
+	       
+	       persons[0] = new Person("Scott");
+	       persons[1] = new Person("Smith");
+	       persons[2] = new Person("Martin");
+	    	
+	       System.out.println(Arrays.toString(persons));
+	    }
+	}
 
 ----------------------------------------------------------------
     package com.ravi.constructor_reference;
@@ -1956,8 +1952,8 @@ It is a final class available in java.time package.
 
 It is also provides date and time along with time zone so, by using this class we can work with different time zone in a global way.
 
-ZonedDateTime x = ZonedDateTime.now();
-ZoneId zone = x.getZone();
+	ZonedDateTime x = ZonedDateTime.now();
+	ZoneId zone = x.getZone();
 
 getZone() is a predefined non static method of ZonedDateTime class which returns ZoneId class which is abstract and sealed class, this ZoneId class provides the different zones, by using getAvailableZoneIds() static method we can find out the total zone available using this ZoneId class.
 
@@ -1985,12 +1981,12 @@ getZone() is a predefined non static method of ZonedDateTime class which returns
 -------------------------------------------------------------------
 Different of() static methods :
 ------------------------------
-List.of();
-Set.of();
-Map.of();
-Stream.of();
-Optional.of();
-ZoneId.of();
+	List.of();
+	Set.of();
+	Map.of();
+	Stream.of();
+	Optional.of();
+	ZoneId.of();
 --------------------------------------------------------------
     package com.ravi.new_date_time;
     
